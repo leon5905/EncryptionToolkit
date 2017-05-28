@@ -1,8 +1,8 @@
 #include <algorithm>
 #include <stdexcept>
 #include <iostream>
-#include "KeyGenerator.h"
 #include "EncryptionToolkit.h"
+#include "KeyGenerator.h"
 
 using namespace std;
 using namespace Encryption;
@@ -19,12 +19,12 @@ int main() {
 	string s = "";
 	for (int i = 0; i < 256; i++) {
 		char a = i;
-		s+=a;
+		s += a;
 	}
 	cout << string_to_hex(s) << "\n\n";
 
 	Encryption::EncryptionToolkit toolkit;
-	toolkit.save_file("main.bin",s);
+	toolkit.save_file("main.bin", s);
 
 	string file;
 	toolkit.load_file("main.bin", file);
