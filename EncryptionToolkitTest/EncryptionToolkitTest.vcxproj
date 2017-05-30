@@ -151,6 +151,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\H%27ng\Source\Repos\EncryptionToolkit\EncryptionToolkitTest\StreamCipherTest.cpp" />
     <ClCompile Include="EncryptionToolkitTest.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

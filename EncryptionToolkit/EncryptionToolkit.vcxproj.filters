@@ -29,5 +29,8 @@
     <ClInclude Include="KeyGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\H%27ng\Source\Repos\EncryptionToolkit\EncryptionToolkit\StreamCipher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
