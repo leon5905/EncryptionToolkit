@@ -41,22 +41,7 @@ int main() {
 	cout << "\n\n";
 
 	getchar();
-	//test Stream Cipher
-	char str[64] = "MY name is noob Keat";
-
-	CRC4 rc4;
-	cout << "Plain text: " << str << "\n";
-	rc4.Encrypt(str, "Key");
-	cout << "Encode: " << str << "\n";
-	rc4.Decrypt(str, "Key");
-	cout << "Decode: " << str << "\n";
-
-	cout << "Plain text: " << aChar << "\n";
-	rc4.Encrypt(aChar, "Key");
-	cout << "Encode: " << aChar << "\n";
-	rc4.Decrypt(aChar, "Key");
-	cout << "Decode: " << aChar << "\n";
-	system("pause");
+	
 }
 
 std::string string_to_hex(const std::string& input)
@@ -74,6 +59,19 @@ std::string string_to_hex(const std::string& input)
 		output.push_back(' ');
 	}
 	return output;
+}
+void streamcipher_display() {
+	char str[256];
+	for (int i = 255; i >= 0; i--) {
+		str[i] = i;
+	}
+
+	CRC4 rc4;
+	cout << "Plain text: " << str << "\n";
+	rc4.Encrypt(str, "Key");
+	cout << "Encode: " << str << "\n";
+	rc4.Decrypt(str, "Key");
+	cout << "Decode: " << str << "\n";
 }
 
 //std::string hex_to_string(const std::string& input)
