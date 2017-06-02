@@ -16,7 +16,7 @@ std::string Encryption::KeyGenerator::generate_key(int byte_size)
 	int remainderCount = (byte_size*8)%32;
 	remainderCount /= 8; // How many byte left to to fill in (outside the main loop)
 
-	for (int i = 0; i <loopCount; i++) {
+	for (int i = 0; i <loopCount; i++) { //Fill in byte in multiple of 4
 		uint32_t random_32_bit = random_engine();
 
 		char bytes[4];
@@ -32,7 +32,7 @@ std::string Encryption::KeyGenerator::generate_key(int byte_size)
 		key += bytes[3];
 	}
 
-	if (remainderCount > 0) {
+	if (remainderCount > 0) { //Fill in the rest of the byte
 		uint32_t random_32_bit = random_engine();
 
 		char bytes;
@@ -46,10 +46,10 @@ std::string Encryption::KeyGenerator::generate_key(int byte_size)
 	return key;
 }
 
-//More secure but slower
+//Generate new seed based on crytographically safe random_device number (exclusive feature of Visual Studio/ other compiler will not ensure random device is secure)
 std::string Encryption::KeyGenerator::generate_key_new_seed(int byte_size)
 {
 	std::random_device rd; //reseed the generator
-	random_engine = std::mt19937(rd);
+	random_engine = std::mt19937{ rd() };
 	return generate_key(byte_size);
 }

@@ -9,7 +9,6 @@ using namespace Encryption;
 
 string string_to_hex(const string&);
 //string hex_to_string(const string& input);
-//Demo pull request 123456
 
 int main() {
 	cout << "Encryption Toolkit Demo \n\n";
