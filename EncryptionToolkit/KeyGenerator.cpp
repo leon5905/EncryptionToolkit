@@ -45,3 +45,11 @@ std::string Encryption::KeyGenerator::generate_key(int byte_size)
 
 	return key;
 }
+
+//More secure but slower
+std::string Encryption::KeyGenerator::generate_key_new_seed(int byte_size)
+{
+	std::random_device rd; //reseed the generator
+	random_engine = std::mt19937(rd);
+	return generate_key(byte_size);
+}
