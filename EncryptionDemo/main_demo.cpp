@@ -3,6 +3,7 @@
 #include <iostream>
 #include "EncryptionToolkit.h"
 #include "KeyGenerator.h"
+#include "StreamCipher.h"
 
 using namespace std;
 using namespace Encryption;
@@ -17,10 +18,16 @@ int main() {
 	cout << keygen.generate_key(5) << "\n\n";
 
 	string s = "";
+	char aChar[256];
 	for (int i = 0; i < 256; i++) {
+		aChar[i] = i;
+
 		char a = i;
 		s += a;
 	}
+	aChar[0] = 1;
+	aChar[255] = 0;
+
 	cout << string_to_hex(s) << "\n\n";
 
 	Encryption::EncryptionToolkit toolkit;
@@ -33,6 +40,7 @@ int main() {
 	cout << "\n\n";
 
 	getchar();
+	
 }
 
 std::string string_to_hex(const std::string& input)
@@ -50,6 +58,19 @@ std::string string_to_hex(const std::string& input)
 		output.push_back(' ');
 	}
 	return output;
+}
+void streamcipher_display() {
+	char str[256];
+	for (int i = 255; i >= 0; i--) {
+		str[i] = i;
+	}
+
+	CRC4 rc4;
+	cout << "Plain text: " << str << "\n";
+	rc4.Encrypt(str, "Key");
+	cout << "Encode: " << str << "\n";
+	rc4.Decrypt(str, "Key");
+	cout << "Decode: " << str << "\n";
 }
 
 //std::string hex_to_string(const std::string& input)

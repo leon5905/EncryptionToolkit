@@ -142,10 +142,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\H%27ng\Source\Repos\EncryptionToolkit\EncryptionToolkit\StreamCipher.cpp" />
     <ClCompile Include="EncryptionToolkit.cpp" />
     <ClCompile Include="KeyGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\H%27ng\Source\Repos\EncryptionToolkit\EncryptionToolkit\StreamCipher.h" />
     <ClInclude Include="EncryptionToolkit.h" />
     <ClInclude Include="KeyGenerator.h" />
   </ItemGroup>
