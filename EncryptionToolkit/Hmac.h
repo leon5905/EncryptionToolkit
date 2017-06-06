@@ -1,9 +1,11 @@
 #pragma once
 #include <string>
+#include "SHA_512.h"
 
 class Hmac {
 private:
-	int block_size;
+	unsigned int block_size;
+	SHA_512 hash;
 
 public:
 	Hmac();

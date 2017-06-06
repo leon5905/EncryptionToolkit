@@ -32,10 +32,13 @@
     <ClCompile Include="EncryptionToolkitTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\H%27ng\Source\Repos\EncryptionToolkit\EncryptionToolkitTest\StreamCipherTest.cpp">
+    <ClCompile Include="SHA_512_Test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SHA_512_Test.cpp">
+    <ClCompile Include="StreamCipherTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HMacTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

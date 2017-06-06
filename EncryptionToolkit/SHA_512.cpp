@@ -48,9 +48,9 @@ std::string SHA_512::get_digest(std::string message)
 
 	unsigned int zerobitByteBlock = (zeroBit+1) / 8; //Calculate whole zero bit byte block
 
-	std::cout << "\nMessageLength (in bit) = " << messageBitNum;
-	std::cout << "\n1+Zero bit to pad = " << zeroBit+1;
-	std::cout << "\n1+Zero bit byte block = " << zerobitByteBlock << "\n";
+	//std::cout << "\nMessageLength (in bit) = " << messageBitNum;
+	//std::cout << "\n1+Zero bit to pad = " << zeroBit+1;
+	//std::cout << "\n1+Zero bit byte block = " << zerobitByteBlock << "\n";
 
 	assert(zerobitByteBlock != 0); //Cannot be zero
 

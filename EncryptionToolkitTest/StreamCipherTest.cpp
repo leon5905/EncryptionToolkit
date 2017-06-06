@@ -19,7 +19,7 @@ namespace StreamCipherTest
 				str[i] = i;
 			}
 
-			CRC4 rc4;
+			Encryption::CRC4 rc4;
 			strcpy(PT, str);
 
 			rc4.Encrypt(str, "Key");

@@ -152,8 +152,8 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\H%27ng\Source\Repos\EncryptionToolkit\EncryptionToolkitTest\StreamCipherTest.cpp" />
     <ClCompile Include="EncryptionToolkitTest.cpp" />
+    <ClCompile Include="HMacTest.cpp" />
     <ClCompile Include="SHA_512_Test.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -162,6 +162,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="KeyGeneratorTest.cpp" />
+    <ClCompile Include="StreamCipherTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EncryptionToolkit\EncryptionToolkit.vcxproj">

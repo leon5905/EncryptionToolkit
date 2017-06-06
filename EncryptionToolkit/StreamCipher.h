@@ -9,7 +9,7 @@ namespace Encryption {
 	public:
 		CRC4();
 		virtual ~CRC4();
-		
+
 		char* Encrypt(char *pszText, const char *pszKey); /* String value is converted into char array */
 		char* Decrypt(char *pszText, const char *pszKey);
 
@@ -19,4 +19,3 @@ namespace Encryption {
 		int  m, n, i, j, ilen;        /* Ambiguously named counters */
 	};
 }
-

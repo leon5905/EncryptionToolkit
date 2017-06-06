@@ -4,6 +4,7 @@
 #include "EncryptionToolkit.h"
 #include "KeyGenerator.h"
 #include "StreamCipher.h"
+#include "Hmac.h"
 
 using namespace std;
 using namespace Encryption;
@@ -39,13 +40,40 @@ int main() {
 
 	cout << "\n\n";
 
+	std::string key_1 = "";
+	std::string key_2 = "Jefe";
+	std::string key_3 = "";
+
+	std::string data_1 = "Hi There";
+	std::string data_2 = "what do ya want for nothing?";
+	std::string data_3 = "This is a test using a larger than block-size key and a larger than block-size data. The key needs to be hashed before being used by the HMAC algorithm.";
+
+	for (int i = 0; i < 20; i++) {
+		key_1 += 0x0b;
+	}
+
+	for (int i = 0; i < 131; i++) {
+		key_3 += 0xaa;
+	}
+
+	Hmac hmac;
+	//std::string hmac1 = hmac.hmac(key_1, data_1);
+	//std::string hmac2 = hmac.hmac(key_2, data_2);
+	std::string hmac3 = hmac.hmac(key_3, data_3);
+
+	std::string hmac1_answer = "87aa7cdea5ef619d4ff0b4241a1d6cb02379f4e2ce4ec2787ad0b30545e17cdedaa833b7d6b8a702038b274eaea3f4e4be9d914eeb61f1702e696c203a126854";
+	std::string hmac2_answer = "164b7a7bfcf819e2e395fbe73b56e0a387bd64222e831fd610270cd7ea2505549758bf75c05a994a6d034f65f8f0e6fdcaeab1a34d4a6b4b636e070a38bce737";
+	std::string hmac3_answer = "e37b6a775dc87dbaa4dfa9f96e5e3ffddebd71f8867289865df5a32d20cdc944b6022cac3c4982b10d5eeb55c3e4de15134676fb6de0446065c97440fa8c6a58";
+
+	cout << string_to_hex(hmac3) <<endl<<endl;
+
 	getchar();
 	
 }
 
 std::string string_to_hex(const std::string& input)
 {
-	static const char* const lut = "0123456789ABCDEF";
+	static const char* const lut = "0123456789abcdef";
 	size_t len = input.length();
 
 	std::string output;
