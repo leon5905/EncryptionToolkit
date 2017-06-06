@@ -2,7 +2,12 @@
 #include <fstream>
 #include <string>
 
-Encryption::EncryptionToolkit::EncryptionToolkit() : key_gen(KeyGenerator()){}
+Encryption::EncryptionToolkit::EncryptionToolkit() : key_gen(KeyGenerator()), sha_512(SHA_512()){}
+
+std::string Encryption::EncryptionToolkit::hash_sha512_compute(std::string message)
+{
+	return sha_512.get_digest(message);
+}
 
 bool Encryption::EncryptionToolkit::save_file(std::string file_path, std::string binary_str)
 {

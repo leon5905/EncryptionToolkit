@@ -1,12 +1,14 @@
 #pragma once
 #include <string>
 #include "KeyGenerator.h"
+#include "SHA_512.h"
 
 namespace Encryption {
 	class EncryptionToolkit {
 	private:
 		//Key Generator
 		KeyGenerator key_gen;
+		SHA_512 sha_512;
 
 	public:
 		EncryptionToolkit();
