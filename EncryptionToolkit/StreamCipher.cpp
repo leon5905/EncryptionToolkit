@@ -1,6 +1,19 @@
 #include "StreamCipher.h"
 #include <iostream>         
 using namespace std;
+#define SWAP(a, b) ((a) ^= (b), (b) ^= (a), (a) ^= (b))
+
+Encryption::CRC4::CRC4()
+{
+	memset(sbox, 0, 256);
+	memset(key, 0, 256);
+}
+
+Encryption::CRC4::~CRC4()
+{
+	memset(sbox, 0, 256);  /* remove Key traces in memory  */
+	memset(key, 0, 256);
+}
 
 char* Encryption::CRC4::Encrypt(char *pszText, const char *pszKey)
 {
@@ -12,7 +25,7 @@ char* Encryption::CRC4::Encrypt(char *pszText, const char *pszKey)
 		*(key + m) = *(pszKey + (m % ilen));
 		*(sbox + m) = m;
 	}
-	for (m = 0; m < 256; m++)
+	for (m = 0; m < 256; m++) /* Initialize the key sequence */
 	{
 		n = (n + *(sbox + m) + *(key + m)) & 0xff;
 		SWAP(*(sbox + m), *(sbox + n));
@@ -33,7 +46,7 @@ char* Encryption::CRC4::Encrypt(char *pszText, const char *pszKey)
 	return pszText;
 }
 
-char *Encryption::CRC4::Decrypt(char *pszText, const char *pszKey)
+char* Encryption::CRC4::Decrypt(char *pszText, const char *pszKey)
 {
-	return Encrypt(pszText, pszKey);  /* using the same function as encoding */
+	return Encrypt(pszText, pszKey);  /* using the same function as encoding to swap back the key sequence */
 }
