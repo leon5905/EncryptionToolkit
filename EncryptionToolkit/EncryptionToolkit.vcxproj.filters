@@ -21,6 +21,9 @@
     <ClCompile Include="KeyGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\H%27ng\Source\Repos\EncryptionToolkit\EncryptionToolkit\StreamCipher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EncryptionToolkit.h">
