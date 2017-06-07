@@ -9,6 +9,6 @@ private:
 
 public:
 	Hmac();
-	std::string hmac(std::string key, std::string message);
-	bool hmac_verify(std::string key, std::string message, std::string mac);
+	std::string hmac(std::string message, std::string key);
+	bool hmac_verify(std::string message, std::string key, std::string mac);
 };

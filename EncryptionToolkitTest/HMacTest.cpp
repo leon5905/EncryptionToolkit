@@ -37,9 +37,9 @@ namespace EncryptionTest
 				key_3 += 0xaa;
 			}
 
-			std::string hmac1 = hmac.hmac(key_1, data_1);
-			std::string hmac2 = hmac.hmac(key_2, data_2);
-			std::string hmac3 = hmac.hmac(key_3, data_3);
+			std::string hmac1 = hmac.hmac(data_1, key_1);
+			std::string hmac2 = hmac.hmac(data_2, key_2);
+			std::string hmac3 = hmac.hmac(data_3, key_3);
 
 			std::string hmac1_answer = "87aa7cdea5ef619d4ff0b4241a1d6cb02379f4e2ce4ec2787ad0b30545e17cdedaa833b7d6b8a702038b274eaea3f4e4be9d914eeb61f1702e696c203a126854";
 			std::string hmac2_answer = "164b7a7bfcf819e2e395fbe73b56e0a387bd64222e831fd610270cd7ea2505549758bf75c05a994a6d034f65f8f0e6fdcaeab1a34d4a6b4b636e070a38bce737";
@@ -48,6 +48,13 @@ namespace EncryptionTest
 			Assert::IsTrue(string_to_hex(hmac1) == hmac1_answer);
 			Assert::IsTrue(string_to_hex(hmac2) == hmac2_answer);
 			Assert::IsTrue(string_to_hex(hmac3) == hmac3_answer);
+
+			//Checking forgery
+			Assert::IsTrue(hmac.hmac_verify(data_1, key_1, hmac1)); //Verified Data
+			Assert::IsTrue(hmac.hmac_verify(data_2, key_2, hmac2));
+
+			Assert::IsFalse(hmac.hmac_verify(data_2, key_1, hmac1)); //Data have been tempered
+			Assert::IsFalse(hmac.hmac_verify(data_1, key_2, hmac2)); //Data have been tempered
 		}
 
 	private:

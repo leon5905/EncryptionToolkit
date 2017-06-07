@@ -5,7 +5,7 @@ Hmac::Hmac():block_size(128), hash(SHA_512())
 {
 }
 
-std::string Hmac::hmac(std::string key, std::string message)
+std::string Hmac::hmac(std::string message, std::string key)
 {
 	unsigned int keyLength = key.length();
 
@@ -36,9 +36,9 @@ std::string Hmac::hmac(std::string key, std::string message)
 	return this->hash.get_digest(o_key_pad + this->hash.get_digest(i_key_pad + message));
 }
 
-bool Hmac::hmac_verify(std::string key, std::string message, std::string mac) 
+bool Hmac::hmac_verify(std::string message, std::string key, std::string mac) 
 {
-	if (Hmac::hmac(key, message) == mac)
+	if (Hmac::hmac(message, key) == mac)
 		return true;
 
 	return false;

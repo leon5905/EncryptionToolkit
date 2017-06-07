@@ -48,10 +48,6 @@ std::string SHA_512::get_digest(std::string message)
 
 	unsigned int zerobitByteBlock = (zeroBit+1) / 8; //Calculate whole zero bit byte block
 
-	//std::cout << "\nMessageLength (in bit) = " << messageBitNum;
-	//std::cout << "\n1+Zero bit to pad = " << zeroBit+1;
-	//std::cout << "\n1+Zero bit byte block = " << zerobitByteBlock << "\n";
-
 	assert(zerobitByteBlock != 0); //Cannot be zero
 
 	unsigned char block;
@@ -84,16 +80,11 @@ std::string SHA_512::get_digest(std::string message)
 	//Parsing the message into N 1024 bit chunks
 	//Each chunk is 128 byte or 128 message length
 	unsigned long long n1024_block_num = static_cast<unsigned long long>(message.length() ) / 128; //128 *8 = 1024
-	//std::cout << "\nBlock Number = " << n1024_block_num;
-	//std::cout << "\nMessage Length = " << message.length();
 
 	std::string* M = new std::string[n1024_block_num];
 	for (unsigned long long i = 0; i < n1024_block_num; i++) {
 		M[i] = message.substr(i*128,128);
 	}
-
-	//std::cout << "\nMessage = " << message;
-	//std::cout << "\nMessage M = " << M[0];
 
 	unsigned long long w[80];
 	for (int i = 0; i < 80; i++) {
@@ -104,33 +95,13 @@ std::string SHA_512::get_digest(std::string message)
 		//Prepare message schedule
 		for (int t = 0; t < 16; t++) {
 			std::string word_64 = M[i].substr(t * 8, 8);
-			//std::cout << "\nword64 = " << word_64;
 			unsigned long long converted=0;
 			for (int i = 0; i <8; i++) {
 				converted += ( ((unsigned long long) (word_64.at(i) & 0x00000000000000FF) ) << ( (7-i) *8) );
-				//std::cout << "\nAddOperand = " << word_64.at(i);
-				//std::cout << "\nAddoperand = " << convertToBitString((unsigned long long) word_64.at(i));
-				//std::cout << "\nAdding Long = " << convertToBitString((((unsigned long long) word_64.at(i)) << ((7 - i) * 8)));
-				//std::cout << "\nLongLong " << i <<" = " << convertToBitString(converted);
 			}
-			//std::cout << "\nLongLong F = " << convertToBitString(converted);
 
 			w[t] = converted;
 		}
-		
-		////Checking message
-		//std::string reconstructedMessage="";
-		//for (int c = 0; c < 16; c++) {
-		//	unsigned long long converted = w[c];
-		//	unsigned char original = 0;
-
-		//	for (int i = 0; i <8; i++) {
-		//		original = (unsigned char) (converted >> ((7 - i) * 8));
-		//		reconstructedMessage += original;
-		//	}
-		//}
-
-		//std::cout << "\nReconstructed Message = " << reconstructedMessage << "\n";
 
 		for (int t = 16; t < 80; t++) {
 			w[t] = SHA512_SIGMA_SMALL_1(w[t - 2]) + w[t - 7] + SHA512_SIGMA_SMALL_0(w[t-15]) + w[t-16];
@@ -184,23 +155,4 @@ std::string SHA_512::get_digest(std::string message)
 	delete[] M;
 
 	return digest;
-}
-
-std::string SHA_512::convertToBitString(unsigned long long value)
-{
-	std::string str(64, '0');
-
-	for (int i = 0; i < 64; i++)
-	{
-		if ((1ll << i) & value)
-			str[63 - i] = '1';
-	}
-
-	str.insert(8, 1,' ');
-	str.insert(17, 1, ' ');
-	str.insert(26, 1, ' ');
-	str.insert(35, 1, ' ');
-
-
-	return str;
 }
